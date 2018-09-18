@@ -1,0 +1,17 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 9010
+
+spring:
+  application:
+    name: wedding-invitation
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+
+test:
+  properties:
+    world: 999999999

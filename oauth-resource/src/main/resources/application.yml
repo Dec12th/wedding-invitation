@@ -1,0 +1,15 @@
+server:
+  tomcat:
+    uri-encoding:UTF-8
+  port: 9000
+  context-path: /oauth-resource
+
+spring:
+  application:
+    name: oauth-resource
+
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://baily:123456@localhost:1111/eureka
+      defaultZone: http://localhost:1111/eureka

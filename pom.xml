@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.baily.template</groupId>
+    <artifactId>demo-test</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+
+    <modules>
+        <module>eureka-server</module>
+        <module>common</module>
+        <module>zuul-gate</module>
+        <module>oauth-resource</module>
+        <module>feign-demo</module>
+        <module>demo-config</module>
+        <module>wedding-invitation</module>
+        <module>wedding-invitation-api</module>
+    </modules>
+
+    <properties>
+        <springboot.version>1.5.13.RELEASE</springboot.version>
+        <java.version>1.8</java.version>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.compile.skip>true</maven.compile.skip>
+        <springboot.compile.skip>true</springboot.compile.skip>
+        <springboot.mainClass>Application</springboot.mainClass>
+        <springloaded.version>1.2.6.RELEASE</springloaded.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <springcloud.version>Dalston.SR5</springcloud.version>
+        <!--Lombok-->
+        <lombok.version>1.16.20</lombok.version>
+    </properties>
+
+    <!-- 指定默认依赖的jar版本 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${springcloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- DataSource -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.6</version>
+            </dependency>
+
+            <!-- mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+            <!-- pageHelper分页 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.1.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>16.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>4.0.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>1.11.3</version>
+            </dependency>
+            <!--引入sharding-jdbc,实现分库分表，读写分离，数据主从-->
+            <dependency>
+                <groupId>io.shardingjdbc</groupId>
+                <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.12</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 使用aliyun镜像 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <!-- Package as an jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.compile.skip}</skip>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- Package as an executable jar -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <configuration>
+                    <skip>${springboot.compile.skip}</skip>
+                    <mainClass>${springboot.mainClass}</mainClass>
+                    <addResources>true</addResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Deploy plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip>
+                </configuration>
+            </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>com.google.cloud.tools</groupId>-->
+                <!--<artifactId>jib-maven-plugin</artifactId>-->
+                <!--<version>0.9.2</version>-->
+                <!--<configuration>-->
+                    <!--<to>-->
+                        <!--<image>myimage</image>-->
+                    <!--</to>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+</project>

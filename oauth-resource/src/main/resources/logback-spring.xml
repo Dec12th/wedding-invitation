@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <jmxConfigurator/>
+
+    <property name="LOG_DIR" value="/home/finance/usr/local/finance-platform/log" />
+    <property name="APP_NAME" value="lakala-fp-service-operation-platform" />
+
+    <!--日志文件输出格式-->
+    <property name="fileLayoutPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n" />
+
+    <!-- mybatis会输出到控制台，只有把 root 中的 level="DEBUG" 设置，才会输出到文件中 -->
+    <logger name="dao" level="DEBUG" />
+
+    <!-- 过滤输出级别 -->
+    <logger name="com.lakala.msc.common.queue.MessageQueue" level="INFO" />
+
+    <!-- 时间滚动输出 level为 INFO 日志 -->
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${LOG_DIR}/${APP_NAME}/info/${APP_NAME}-info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${APP_NAME}/info/${APP_NAME}-info-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${fileLayoutPattern}</Pattern>
+        </layout>
+    </appender>
+
+    <!-- 时间滚动输出 level为 ERROR 日志 -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${LOG_DIR}/${APP_NAME}/error/${APP_NAME}-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/${LOG_DIR}/${APP_NAME}/error/${APP_NAME}-error-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${fileLayoutPattern}</Pattern>
+        </layout>
+    </appender>
+
+    <!-- 时间滚动输出 level为 debug 日志 -->
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>${LOG_DIR}/${APP_NAME}/debug/${APP_NAME}-debug.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${APP_NAME}/debug/${APP_NAME}-debug-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${fileLayoutPattern}</Pattern>
+        </layout>
+    </appender>
+
+
+        <root level="INFO">
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+        </root>
+
+ <!--   &lt;!&ndash; 开发，测试环境. &ndash;&gt;
+    <springProfile name="dev,uat">
+        &lt;!&ndash; 定义日志每个级别的输出文件 &ndash;&gt;
+        <root level="INFO">
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+        </root>
+    </springProfile>
+
+    &lt;!&ndash; 生产环境. &ndash;&gt;
+    <springProfile name="prdbak,prd">
+        &lt;!&ndash; 定义日志每个级别的输出文件 &ndash;&gt;
+        <root level="INFO">
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+        </root>
+    </springProfile>-->
+
+</configuration>
