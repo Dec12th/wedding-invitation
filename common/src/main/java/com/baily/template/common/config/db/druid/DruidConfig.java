@@ -21,17 +21,17 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(DruidProperties.class)
-@ConditionalOnProperty(prefix = "druid.config",name = "enabled",value = "true")
-public class DruidConfig {
+@ConditionalOnProperty(prefix = "druid.config",name = "enabled",havingValue = "true")
+public class DruidConfig{
 
     @Autowired
-    private DruidProperties druidProperties;
+    DruidProperties druidProperties;
 
 	@Bean
     @ConditionalOnMissingBean(ServletRegistrationBean.class)
 	public ServletRegistrationBean druidServlet() {
 		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),druidProperties.getUrlMapping());
-		servletRegistrationBean.addInitParameter("resetEnable", druidProperties.getResetEnabl());
+		servletRegistrationBean.addInitParameter("resetEnable", druidProperties.getResetEnable());
 		servletRegistrationBean.addInitParameter("allow", druidProperties.getAllow());
 		servletRegistrationBean.addInitParameter("deny", druidProperties.getDeny());
 		servletRegistrationBean.addInitParameter("loginUsername", druidProperties.getLoginUsername());

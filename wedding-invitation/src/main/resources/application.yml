@@ -15,3 +15,16 @@ eureka:
 test:
   properties:
     world: 999999999
+
+druid:
+  config:
+    enabled: true
+    urlMapping: /druid/*
+    resetEnable: false
+    allow:
+    deny:
+    loginUsername: baily
+    loginPassword: 123456
+    exclusions:  /druid/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico
+    profileEnable: true
+    urlPatterns: /*

@@ -9,7 +9,7 @@ public class DruidProperties {
 
     private String urlMapping;
 
-    private String resetEnabl;
+    private String resetEnable;
 
     private String allow;
 
