@@ -52,22 +52,22 @@ public class DruidConfig{
 		return filterRegistrationBean;
 	}
 
-	@Bean("wallFilter")
+    @Bean("wallFilter")
     @ConditionalOnMissingBean(WallFilter.class)
-	public WallFilter wallFilter(){
-		WallFilter wallFilter=new WallFilter();
-		wallFilter.setConfig(wallConfig());
-		return  wallFilter;
-	}
+    public WallFilter wallFilter(){
+        WallFilter wallFilter=new WallFilter();
+        wallFilter.setConfig(wallConfig());
+        return  wallFilter;
+    }
 
-	@Bean
+    @Bean
     @ConditionalOnMissingBean(WallConfig.class)
-	public WallConfig wallConfig(){
-		WallConfig config =new WallConfig();
-		//允许一次执行多条语句
-		config.setMultiStatementAllow(true);
-		//允许非基本语句的其他语句
-		config.setNoneBaseStatementAllow(true);
-		return config;
-	}
+    public WallConfig wallConfig(){
+        WallConfig config =new WallConfig();
+        //允许一次执行多条语句
+        config.setMultiStatementAllow(true);
+        //允许非基本语句的其他语句
+        config.setNoneBaseStatementAllow(true);
+        return config;
+    }
 }
