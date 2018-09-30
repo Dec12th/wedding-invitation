@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author:YB
  * @date:2018年01月02日 17:59
  */
-@Configuration("dataSource")
+//@Configuration("dataSource")
 //@AutoConfigureBefore(MyBatisConfig.class)	//在动态数据源之前加载
 public class DynamicDataSource extends AbstractRoutingDataSource {
 

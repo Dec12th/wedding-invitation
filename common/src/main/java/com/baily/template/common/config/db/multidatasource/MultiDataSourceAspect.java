@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  * @author:YB
  * @date:2018年01月03日 13:59
  */
-@Configuration
+//@Configuration
 @Aspect
 @Order(-1)// 调节优先级，保证该AOP在@Transactional之前执行
 @EnableAspectJAutoProxy(proxyTargetClass = true)

@@ -21,7 +21,7 @@ import java.util.List;
  * @author:YB
  * @date:2018年01月03日 13:59
  */
-@Configuration
+//@Configuration
 @EnableConfigurationProperties(MasterProperties.class)
 @AutoConfigureBefore(DynamicDataSource.class)    //在动态数据源之前加载
 public class MasterConfig {

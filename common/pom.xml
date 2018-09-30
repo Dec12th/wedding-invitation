@@ -67,10 +67,10 @@
             <artifactId>gson</artifactId>
         </dependency>
 
-<!--        <dependency>
+        <dependency>
             <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
 

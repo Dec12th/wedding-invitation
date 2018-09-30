@@ -19,9 +19,9 @@ import org.springframework.context.annotation.Configuration;
  * @author:YB
  * @date:2018年01月03日 13:59
  */
-@Configuration
+//@Configuration
 @EnableConfigurationProperties(DruidProperties.class)
-@ConditionalOnProperty(prefix = "druid.config",name = "enabled",havingValue = "true")
+//@ConditionalOnProperty(prefix = "druid.config",name = "enabled",havingValue = "true")
 public class DruidConfig{
 
     @Autowired
