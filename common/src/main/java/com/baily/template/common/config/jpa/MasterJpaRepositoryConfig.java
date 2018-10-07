@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,11 +15,16 @@ import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Map;
 
+import static com.baily.template.common.config.jpa.MasterJpaRepositoryConfig.BASE_PACKAGES;
+
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager",
-        basePackages = {"com.spring.*.dao"})
+        basePackages = {BASE_PACKAGES + "dao"})
+//@AutoConfigureAfter(DynamicDataSource.class)
 public class MasterJpaRepositoryConfig {
+
+    public static final String BASE_PACKAGES = "com.baily.*.";
 
     @Autowired
     private JpaProperties jpaProperties;
@@ -30,29 +34,31 @@ public class MasterJpaRepositoryConfig {
     private DataSource dataSource;
 
     @Bean(name = "entityManager")
-    @Primary
+//    @Primary
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
         return entityManagerFactory(builder).getObject().createEntityManager();
     }
 
     /**
      * 指定需要扫描的实体包实现与数据库关联
+     *
      * @param builder
      * @return
      */
     @Bean(name = "entityManagerFactory")
-    @Primary
+//    @Primary
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(dataSource)
                 .properties(getVendorProperties())
-                .packages("com.spring.*.entity")
+                .packages(BASE_PACKAGES + "entity")
                 .persistenceUnit("persistenceUnitSpring")
                 .build();
     }
 
     /**
      * 通过jpaProperties指定hibernate数据库方言以及在控制台打印sql语句
+     *
      * @return
      */
     private Map<String, String> getVendorProperties() {
@@ -64,11 +70,12 @@ public class MasterJpaRepositoryConfig {
 
     /**
      * 创建事务管理
+     *
      * @param builder
      * @return
      */
     @Bean(name = "transactionManager")
-    @Primary
+//    @Primary
     PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactory(builder).getObject());
     }

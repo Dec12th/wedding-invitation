@@ -1,9 +1,8 @@
 package com.baily.template.weddinginvitation.annotation;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class TestInitializingBean implements InitializingBean {
     /**
      * Invoked by a BeanFactory after it has set all bean properties supplied

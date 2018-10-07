@@ -10,6 +10,7 @@ public class Constants {
 
     //写库对应的数据源key
     public static final String MASTER_DATASOURCE = "master";
+    public static final String SLAVE1_DATASOURCE = "slave1";
 
     //slave模式编号
     public static final String SLAVE_DATASOURCE_CODE = "replica-set-slave-999999-host";

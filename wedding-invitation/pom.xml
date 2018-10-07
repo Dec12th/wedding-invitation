@@ -45,12 +45,12 @@
             <groupId>com.baily.template</groupId>
             <artifactId>common</artifactId>
             <version>${project.parent.version}</version>
-            <exclusions>
+<!--            <exclusions>
                 <exclusion>
                     <groupId>io.shardingjdbc</groupId>
                     <artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->

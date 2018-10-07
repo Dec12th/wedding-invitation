@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
-@Configuration
+//@Configuration
 public class TestImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
     /**
      * Register bean definitions as necessary based on the given annotation metadata of

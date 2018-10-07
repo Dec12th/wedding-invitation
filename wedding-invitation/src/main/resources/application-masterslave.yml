@@ -1,0 +1,97 @@
+server:
+    context-path: /springboot
+    port: 8088
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+
+sharding:
+    jdbc:
+        config:
+            masterslave:
+                load-balance-algorithm-type: round_robin
+                name: ds_ms
+            sharding:
+                master-slave-rules:
+                    ds_0:
+                        masterDataSourceName: ds_master_0
+                        slaveDataSourceNames: ds_master_0_slave_0, ds_master_0_slave_1
+        datasource:
+            ds_master_0:
+                username: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/demo_ds_master_0?serverTimezone=UTC&autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+                driverClassName: com.mysql.cj.jdbc.Driver
+                filters: stat,wall,log4j
+                initialSize: 10
+                maxActive: 50
+                maxPoolPreparedStatementPerConnectionSize: 20
+                maxWait: 60000
+                minEvictableIdleTimeMillis: 300000
+                minIdle: 10
+                poolPreparedStatements: false
+                testOnBorrow: false
+                testOnReturn: false
+                testWhileIdle: true
+                timeBetweenEvictionRunsMillis: 60000
+                type: com.alibaba.druid.pool.DruidDataSource
+                useGlobalDataSourceStat: false
+                validationQuery: SELECT 1 FROM DUAL
+            ds_master_0_slave_0:
+                username: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+                driverClassName: com.mysql.cj.jdbc.Driver
+                filters: stat,wall,log4j
+                initialSize: 10
+                maxActive: 50
+                maxPoolPreparedStatementPerConnectionSize: 20
+                maxWait: 60000
+                minEvictableIdleTimeMillis: 300000
+                minIdle: 10
+                poolPreparedStatements: false
+                testOnBorrow: false
+                testOnReturn: false
+                testWhileIdle: true
+                timeBetweenEvictionRunsMillis: 60000
+                type: com.alibaba.druid.pool.DruidDataSource
+                useGlobalDataSourceStat: false
+                validationQuery: SELECT 1 FROM DUAL
+            ds_master_0_slave_1:
+                username: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+                connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+                driverClassName: com.mysql.cj.jdbc.Driver
+                filters: stat,wall,log4j
+                initialSize: 10
+                maxActive: 50
+                maxPoolPreparedStatementPerConnectionSize: 20
+                maxWait: 60000
+                minEvictableIdleTimeMillis: 300000
+                minIdle: 10
+                poolPreparedStatements: false
+                testOnBorrow: false
+                testOnReturn: false
+                testWhileIdle: true
+                timeBetweenEvictionRunsMillis: 60000
+                type: com.alibaba.druid.pool.DruidDataSource
+                useGlobalDataSourceStat: false
+                validationQuery: SELECT 1 FROM DUAL
+            names: ds_master_0,ds_master_0_slave_0,ds_master_0_slave_1
+spring:
+    application:
+        name: spring-boot-mybatis-sharding-jdbc-masterslave
+    mybatis:
+        mappingXml: classpath:mapper/*.xml
+        mybatisConfigXml: classpath:context/mybatis-config.xml
+        typeAliasesPackage: com.baily.template.jdbc.model
+    jpa:
+      hibernate:
+        ddl-auto: create
+      show-sql: true
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
