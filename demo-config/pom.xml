@@ -21,6 +21,47 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.bestv</groupId>
+            <artifactId>common</artifactId>
+            <version>20180910.1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/common-20180910.1.0.0-sources.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bestv</groupId>
+            <artifactId>common-net</artifactId>
+            <version>20180420.1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/common-net-20180420.1.0.0-sources.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bestv</groupId>
+            <artifactId>common-net-okhttp</artifactId>
+            <version>20180801.1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/common-net-okhttp-20180801.1.0.0-sources.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bestv</groupId>
+            <artifactId>common-test</artifactId>
+            <version>20180101.1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/common-test-20180101.1.0.0-sources.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.bestv</groupId>
+            <artifactId>msg-trans</artifactId>
+            <version>20180701.1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/msg-trans-20180701.1.0.0-sources.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>
