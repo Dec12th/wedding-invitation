@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2017-07-21
  */
 
-@Service("iUserService")
+@Service("iUserRecordService")
 public class IUserRecordServiceImpl implements IUserRecordService {
 
     @Autowired
