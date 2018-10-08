@@ -1,9 +1,7 @@
 package com.baily.template.weddinginvitation.common.db.repository;
 
-import com.baily.template.weddinginvitation.common.db.entity.User;
+import com.baily.template.weddinginvitation.common.db.entity.IUserRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 /**
  * @ClassName: UserRepository
@@ -12,7 +10,6 @@ import java.util.List;
  * @date:2018年10月07日 20:49
  */
 //@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface IUserRecordRepository extends JpaRepository<IUserRecord, String> {
 
-    List<User> findAllByUserName(String userName);
 }

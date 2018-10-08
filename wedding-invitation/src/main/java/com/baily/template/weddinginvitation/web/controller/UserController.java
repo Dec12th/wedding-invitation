@@ -4,6 +4,7 @@ import com.baily.template.weddinginvitation.common.db.entity.User;
 import com.baily.template.weddinginvitation.common.db.repository.UserRepository;
 import com.baily.template.weddinginvitation.domain.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "users/add", method = RequestMethod.POST)
     public User addUser(@RequestParam("username") String username, @RequestParam("name") String name, @RequestParam("password") String password) {
         User user = new User();
-        user.setUsername(username);
+        user.setUserName(username);
         user.setName(name);
         user.setPassword(password);
         return userRepository.save(user);
@@ -48,6 +49,15 @@ public class UserController {
         user.setName(name);
         return userRepository.save(user);//与保存是同一个方法
 
+    }
+
+
+    @GetMapping("/users/userName/{userName}")
+    public List<User> getUserByUserName(@PathVariable String userName) {
+        User user = new User();
+        user.setUserName(userName);
+        Example<User> userExample = Example.of(user);
+        return userRepository.findAll(userExample);
     }
 
 }

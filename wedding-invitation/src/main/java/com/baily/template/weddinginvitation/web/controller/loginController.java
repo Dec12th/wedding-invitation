@@ -1,8 +1,8 @@
-package com.baily.template.weddinginvitation.mobile.ctrl;
+package com.baily.template.weddinginvitation.web.controller;
 
 
+import com.baily.template.weddinginvitation.common.db.entity.IUser;
 import com.baily.template.weddinginvitation.mobile.model.TypeBean;
-import com.baily.template.weddinginvitation.user.model.User;
 import com.baily.template.weddinginvitation.util.wxLogin.SNSUserInfo;
 import com.baily.template.weddinginvitation.util.wxLogin.WeiXinUtil;
 import com.baily.template.weddinginvitation.util.wxLogin.WeixinOauth2Token;
@@ -120,11 +120,11 @@ public class loginController {
         ModelAndView mav = new ModelAndView();
         Gson gson = new Gson();
         HttpSession session = request.getSession();
-        User sessionuser = new User();
+        IUser sessionuser = new IUser();
         sessionuser.setId(userId);
         /*----------建议存完整的user，此时session中的user只有Id---------------*/
         session.setAttribute("login_user", sessionuser);
-        User uu = (User) session.getAttribute("login_user");
+        IUser uu = (IUser) session.getAttribute("login_user");
         mav.setViewName("/front/personalCenter");
         return gson.toJson(mav);
     }

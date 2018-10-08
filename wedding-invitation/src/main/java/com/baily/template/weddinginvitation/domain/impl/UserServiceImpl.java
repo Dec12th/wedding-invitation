@@ -23,12 +23,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public void addMoreUsers() {
         User user1 = new User();
-        user1.setUsername("123");
+        user1.setUserName("123");
         user1.setName("123");
         user1.setPassword("123");
         userRepository.save(user1);
         User user2 = new User();
-        user2.setUsername("234");
+        user2.setUserName("234");
         user2.setName("123");
         user2.setPassword("123");
         userRepository.save(user2);
@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService{
 
         List userList = new ArrayList();
         User user1 = new User();
-        user1.setUsername("345");
+        user1.setUserName("345");
         user1.setName("123");
         user1.setPassword("123");
         userList.add(user1);
         User user2 = new User();
-        user2.setUsername("456");
+        user2.setUserName("456");
         user2.setName("123");
         user2.setPassword("123");
         userList.add(user2);

@@ -19,8 +19,8 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private String username;
+    @Column(name = "user_name")
+    private String userName;
 
     @Column
     private String name;
@@ -32,7 +32,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -46,12 +46,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {

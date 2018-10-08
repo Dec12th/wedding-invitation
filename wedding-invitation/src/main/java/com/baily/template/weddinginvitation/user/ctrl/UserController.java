@@ -1,6 +1,6 @@
 //package com.baily.template.weddinginvitation.user.ctrl;
 //
-//import com.baily.template.weddinginvitation.user.service.UserService;
+//import com.baily.template.weddinginvitation.domain.UserService;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //
@@ -14,7 +14,7 @@
 //@RequestMapping("/User")
 //public class UserController {
 //
-////    @Resource
-////    private UserService userService;
+//    @Resource
+//    private UserService userService;
 //
 //}
