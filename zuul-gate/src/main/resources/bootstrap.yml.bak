@@ -1,0 +1,25 @@
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:18080/eureka
+
+# 基础信息配置
+spring:
+  application:
+    name: spring-cloud-zuul
+
+zuul:
+  routes: # 路由规则配置
+    oauth-resource:
+      path: /wedding-invitation/**
+      serviceId: wedding-invitation
+
+#apollo:
+#  bootstrap:
+#    enabled: true
+    # will inject 'application' and 'TEST1.apollo' namespaces in bootstrap phase
+#    namespaces: application
+#  meta: http://localhost:18080
+
+#app:
+#  id: spring-cloud-zuul

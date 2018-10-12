@@ -1,5 +1,18 @@
-server:
-  tomcat:
-    uri-encoding: UTF-8
-  port: 2006
+spring:
+    profiles:
+      active: uat
+
+app:
+  id: spring-cloud-zuul
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,TEST1.common-config
+#  meta: http://localhost:18080
+
+
+
+
+
 
