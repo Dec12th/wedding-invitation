@@ -93,7 +93,6 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public BufferedReader getReader() throws IOException {
-        System.out.println("测试测试123456：getReader");
         BufferedReader result = super.getReader();
         StringBuffer buffer = new StringBuffer();
         String line = " ";
@@ -108,7 +107,6 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        System.out.println("测试测试123456：getInputStream");
         ServletInputStream result = super.getInputStream();
         StringBuilder content = new StringBuilder();
         byte[] b = new byte[1024];
