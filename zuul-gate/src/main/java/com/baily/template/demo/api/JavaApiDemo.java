@@ -95,7 +95,7 @@ public class JavaApiDemo {
     }
 
     public static void main(String[] args) throws IOException {
-//        System.setProperty("apollo.meta", "http://localhost:18080");
+        System.setProperty("apollo.meta", "http://localhost:18080");
         JavaApiDemo apolloConfigDemo = new JavaApiDemo();
         apolloConfigDemo.printEnvInfo();
         System.out.println(

@@ -1,6 +1,6 @@
 spring:
     profiles:
-      active: uat
+      active: dev
 
 app:
   id: spring-cloud-zuul
@@ -8,7 +8,8 @@ app:
 apollo:
   bootstrap:
     enabled: true
-    namespaces: application,TEST1.common-config
+    #注明监听的namespace
+    namespaces: application,TEST1.common-config,test-private
 #  meta: http://localhost:18080
 
 
