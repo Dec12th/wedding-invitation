@@ -411,11 +411,11 @@ public class MobileController {
             String code = request.getParameter("code");
             String appid = request.getParameter("appid");
             String secret = request.getParameter("secret");
-            String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
+            String requestUrl = "https://api.weixin.qq.com/sns/jscode2session?appid="
                     + appid
                     + "&secret="
                     + secret
-                    + "&code="
+                    + "&js_code="
                     + code
                     + "&grant_type=authorization_code";
             // 第一次请求 获取access_token 和 openid
