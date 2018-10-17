@@ -42,13 +42,13 @@ public class MobileServiceImpl implements MobileService {
 	//获取赞列表
     @Override
 	public List<BlessUser> getAllBlessUser(){
-        return blessUserRepository.findAll(new Sort("create_time"));
+        return blessUserRepository.findAll(new Sort("createTime"));
 	}
 
 	//获取评论列表
     @Override
 	public List<BlessComment> getAllBlessComment(){
-        return blessCommentRepository.findAll(new Sort("create_time"));
+        return blessCommentRepository.findAll(new Sort("createTime"));
 	}
 
     @Override

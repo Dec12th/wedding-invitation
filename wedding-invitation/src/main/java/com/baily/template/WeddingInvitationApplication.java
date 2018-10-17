@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @author:YB
  * @date:2018年01月02日 11:24
  */
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @SpringBootApplication
 //@EnableConfigurationProperties
 //@TestImport
