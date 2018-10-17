@@ -183,7 +183,7 @@ public class MobileController {
             blessComment.setNickImage(nickImage + "");
             blessComment.setNickName(nickName + "");
             blessComment.setComment(comment + "");
-            SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分ss秒");
             blessComment.setCreateTime(df.format(new Date()));
             blessComment.setId(System.currentTimeMillis() + "");
 //            blessComment.setOpen_id(openId);
