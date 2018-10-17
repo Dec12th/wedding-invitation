@@ -14,7 +14,8 @@ import com.baily.template.weddinginvitation.user.model.UserInfo;
 import com.baily.template.weddinginvitation.util.GsonUtil;
 import com.baily.template.weddinginvitation.util.HttpRequestor;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -51,7 +52,6 @@ public class MobileController {
     private final String SAVE_COMMENT = "SAVE_COMMENT";// 保存评论
 
 
-    private JsonArray jsonArray = new JsonArray();
     @Autowired
     private MobileService mobileService;
     @Autowired
@@ -60,6 +60,7 @@ public class MobileController {
     @Autowired
     private IUserRecordService userRecordService;
 
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
     /**
@@ -317,24 +318,12 @@ public class MobileController {
             userRecordService.saveUser(userRecord);
 
             if (null != openId && !"".equals(openId)) {
-                Object userOlderList = userService.getUserById(openId);
-                if (null != userOlderList) {
-                    List<Object> list = (List<Object>) userOlderList;
-                    if (list.size() > 0 && null != list.get(0) && list.get(0) instanceof Object[]) {
-                        Object[] listResult = (Object[]) list.get(0);
-                        IUser user = new IUser();
-                        user.setId(listResult[0] + "");
-                        user.setOpenId(listResult[1] + "");
-                        user.setAvatarUrl(listResult[2] + "");
-                        user.setCity(listResult[3] + "");
-                        user.setNickName(listResult[4] + "");
-                        user.setProvince(listResult[5] + "");
-                        user.setCreateTime(listResult[6] + "");
+                IUser user = userService.getUserByOpenId(openId);
+                if (null != user) {
                         user.setUpdateTime(formatter.format(new Date()));
                         userService.updateUser(user);
-                        System.out.println("--------------update_user_success------------");
+                    log.info("--------------update_user_success------------");
                         return "更新成功";
-                    }
                 }
             }
             IUser user = new IUser();
@@ -346,10 +335,10 @@ public class MobileController {
             user.setProvince(userInfo.getProvince());
             user.setCreateTime(formatter.format(new Date()));
             userService.saveUser(user);
-            System.out.println("--------------save_user_success------------");
+            log.info("--------------save_user_success------------");
             return "保存成功";
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("saveUser error",e);
             return "保存失败";
         }
     }
@@ -429,10 +418,8 @@ public class MobileController {
                     + code
                     + "&grant_type=authorization_code";
             // 第一次请求 获取access_token 和 openid
-            String oppid;
-            oppid = new HttpRequestor().doGet(requestUrl);
-            Gson gson = new Gson();
-//             String access_token = (String) oppidObj.get("access_token");
+            String oppid = new HttpRequestor().doGet(requestUrl);
+            log.info(" 获取openid response:{}",oppid);
             Map<String, Object> openidMap = GsonUtil.fromJson(oppid, Map.class);
             String openid = (String) openidMap.get("openid");
             if (openid != null && !"".equals(openid)) {

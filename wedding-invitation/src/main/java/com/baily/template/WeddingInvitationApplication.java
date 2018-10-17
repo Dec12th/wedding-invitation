@@ -3,7 +3,6 @@ package com.baily.template;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @author:YB
  * @date:2018年01月02日 11:24
  */
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @SpringBootApplication
 //@EnableConfigurationProperties
 //@TestImport
