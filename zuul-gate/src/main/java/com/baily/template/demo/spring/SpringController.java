@@ -19,6 +19,9 @@ public class SpringController {
     @Autowired
     TestBean testBean;
 
+    @Value("${test.yml.timeout:6000}")
+    long testYml_timeout;
+
     /**
      * jsonBeanProperty=[{"someString":"hello","someInt":100},{"someString":"world!","someInt":200}]
      */
@@ -40,6 +43,11 @@ public class SpringController {
         String result = testBean.getEnvValue(request.getQueryString());
         System.out.println(result);
         return "result:"+result;
+    }
+
+    @RequestMapping(value = "getYmlTimeout", method = RequestMethod.GET)
+    public String getYmlTimeout() {
+        return String.valueOf(testYml_timeout);
     }
 
 

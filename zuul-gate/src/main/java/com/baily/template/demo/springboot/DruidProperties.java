@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @ConditionalOnProperty("druid.config.enabled")
 @Component("druidProperties")
 //使用@ConfigurationProperties时，如果需要在Apollo配置变化时自动更新注入的值，需要配合使用EnvironmentChangeEvent或RefreshScope
-@RefreshScope
+//@RefreshScope
 public class DruidProperties {
 
     private static final Logger logger = LoggerFactory.getLogger(DruidProperties.class);
@@ -43,7 +43,7 @@ public class DruidProperties {
     private void initialize() {
         logger.info(
                 "DruidProperties initialized - {}",
-                toString());
+                this.toString());
     }
 
 }
